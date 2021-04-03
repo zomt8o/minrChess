@@ -1,0 +1,149 @@
+Pieces:
+
+Pawn - 0
+Rook - 1
+Knight - 2
+Bishop - 3
+Queen - 4
+King - 5
+
+white - true
+black - false
+
+
+
+######################################
+Known bugs:
+
+Clicking another piece when the promotion dialogue is present will cause the chatscript to stop working and thus pause the game indefinitely
+
+
+######################################
+
+Commands:
+
+/namespace define zomChess
+
+
+
+/type define zomChess PieceSquare
+
+/type field define zomChess PieceSquare Boolean colour = null
+/type field define zomChess PieceSquare BlockLocation location
+/type field define zomChess PieceSquare Boolean occupied = false
+/type field define zomChess PieceSquare Int piece = null
+/type field define zomChess PieceSquare Boolean selected = false
+/type field define zomChess PieceSquare Boolean highlighted = false
+/type field define zomChess PieceSquare Int x
+/type field define zomChess PieceSquare Int y
+
+
+/type constructor define zomChess PieceSquare(BlockLocation pieceBlock)
+/s c constructor zomChess PieceSquare(BlockLocation, Int, Int) @var this.location = pieceBlock
+/s c constructor zomChess PieceSquare(BlockLocation, Int, Int) @var this.x = x
+/s c constructor zomChess PieceSquare(BlockLocation, Int, Int) @var this.y = y
+
+
+
+
+/type define zomChess GridSquare
+
+/type field define zomChess GridSquare Boolean highlighted = false
+/type field define zomChess GridSquare BlockLocation location
+/type field define zomChess GridSquare Int x
+/type field define zomChess GridSquare Int y
+
+/type constructor define zomChess GridSquare(BlockLocation gridBlock, Int x, Int y)
+/s c constructor zomChess GridSquare(BlockLocation, Int, Int) @var this.location = gridBlock
+/s c constructor zomChess GridSquare(BlockLocation, Int, Int) @var this.x = x
+/s c constructor zomChess GridSquare(BlockLocation, Int, Int) @var this.y = y
+
+
+
+
+/variable define zomChess PieceSquare[] pieceSquareList = PieceSquare[]
+/variable define zomChess GridSquare[] gridSquareList = GridSquare[]
+
+
+
+
+
+
+
+/var define zomChess GridSquare[] highlightedBlocks = GridSquare[]
+/var define zomChess PieceSquare[] highlightedPieces = PieceSquare[]
+
+/var define zomChess PieceSquare selectedPiece
+/variable define zomChess Block currentBlock
+
+
+/variable define zomChess Boolean paused = false
+
+
+
+/function define zomChess pieceScript(Int pieceX, Int pieceY)
+/function define zomChess gridScript(Int gridX, Int gridY)
+
+
+
+
+
+/function define zomChess gridReset(Block block)
+/function define zomChess pieceRefresh(Int x, Int y)
+
+/function define zomChess gridSquareRefresh(Int x, Int y)
+
+
+
+
+/function define zomChess pieceMove(Int oldPieceLoc, Int newPieceLoc)
+
+
+
+/function define zomChess pawnMove(PieceSquare currentPiece)
+/function define zomChess rookMove(PieceSquare currentPiece)
+/function define zomChess knightMove(PieceSquare currentPiece)
+/function define zomChess bishopMove(PieceSquare currentPiece)
+/function define zomChess kingMove(PieceSquare currentPiece)
+
+
+/function define zomChess rookLoop1(PieceSquare currentPiece)
+/function define zomChess rookLoop2(PieceSquare currentPiece)
+/function define zomChess rookLoop3(PieceSquare currentPiece)
+/function define zomChess rookLoop4(PieceSquare currentPiece)
+
+/function define zomChess bishopLoop1(PieceSquare currentPiece)
+/function define zomChess bishopLoop2(PieceSquare currentPiece)
+/function define zomChess bishopLoop3(PieceSquare currentPiece)
+/function define zomChess bishopLoop4(PieceSquare currentPiece)
+
+
+/function define zomChess pawnPromoteChat(Int x, Int y)
+/function define zomChess pawnPromote(Int x, Int y, Int piece)
+
+
+/function define zomChess Boolean lineHighlighting(Int x, Int y, PieceSquare currentPiece, Int piece)
+
+
+/function define zomChess gridFlash(String colour)
+
+/function define zomChess checkCode()
+
+
+/variable define zomChess Boolean whiteCheck
+/variable define zomChess Boolean blackCheck
+
+/variable define zomChess Boolean checkColour
+/variable define zomChess Boolean checking
+/variable define zomChess Int kingLoc
+
+
+
+
+/variable define zomChess final String[] whitePieceColour = String["light_gray","lime","magenta","light_blue","pink","yellow"]
+/variable define zomChess final String[] blackPieceColour = String["gray","green","purple","cyan","red","orange"]
+
+/variable define zomChess final Int[] pieceIDs = Int[1,2,3,4,5,3,2,1]
+
+
+/variable define zomChess Boolean turn = true

@@ -1,0 +1,5 @@
+setup -> each square:   squareScript()
+      -> each piece:    pieceScript()       -> piece type detection       -> pawn   -> moves
+                                                                                    -> highlightClear()     -> gridSquareRefresh()
+                                                                                    -> gridSquareRefresh()
+                                                                                                                                                             
