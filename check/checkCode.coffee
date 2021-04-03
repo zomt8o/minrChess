@@ -18,3 +18,4 @@
 
 @var gridSquareList[kingLoc].location.set("red_concrete")
 
+test stuff
